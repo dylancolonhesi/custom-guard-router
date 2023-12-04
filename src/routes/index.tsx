@@ -13,7 +13,7 @@ export function MainRoutes() {
     return (
         <Routes>
             <Route path="/" element={
-                <GuardedRoute component={<Home />} guard={[]} />
+                <GuardedRoute component={<Home />} />
             } />
             <Route path="/contact" element={
                 <GuardedRoute component={<Contact />} guard={[isAdmin(), isCommon()]} />

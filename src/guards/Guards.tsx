@@ -15,7 +15,7 @@ export function Guard({ bool, component }: GuardType) {
     if (bool && bool.includes(true)) {
         // usuario com permissão retorna o component
         return component;
-    } else if (bool.length === 0 && isAuthenticated()) {
+    } else if (isAuthenticated()) {
         // array de boolean esta vazio mas o usuário esta autenticado
         return component;
     } else {
