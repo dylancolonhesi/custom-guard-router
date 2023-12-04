@@ -8,7 +8,7 @@ import { PerfilAdmin } from "../pages/perfil-admin";
 import { Route, Routes } from "react-router-dom";
 
 export function MainRoutes() {
-    const { isAdmin, isCommon } = useAuth();
+    const { isAdmin, isCommon, isCompany } = useAuth();
 
     return (
         <Routes>
@@ -16,10 +16,10 @@ export function MainRoutes() {
                 <GuardedRoute component={<Home />} guard={[]} />
             } />
             <Route path="/contact" element={
-                <GuardedRoute component={<Contact />} guard={[isAdmin() || isCommon()]} />
+                <GuardedRoute component={<Contact />} guard={[isAdmin(), isCommon()]} />
             } />
             <Route path="/details" element={
-                <GuardedRoute component={<Details />} guard={[isAdmin() || isCommon()]} />
+                <GuardedRoute component={<Details />} guard={[isAdmin(), isCompany()]} />
             } />
             <Route path="/perfil-admin" element={
                 <GuardedRoute component={<PerfilAdmin />} guard={[isAdmin()]} />

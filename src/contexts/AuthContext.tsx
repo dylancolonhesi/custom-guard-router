@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 
 type Usuario = {
-    tipo: 'admin' | 'common';
+    tipo: 'admin' | 'common' | 'company';
     nome: string;
 };
 
 type AuthContextType = {
     isAdmin: () => boolean;
     isCommon: () => boolean;
+    isCompany: () => boolean;
     isAuthenticated: () => boolean;
     isInitialLoading: () => boolean;
 };
@@ -18,7 +19,7 @@ type AuthContextProviderType = {
 
 const usuario: Usuario = {
     nome: 'Dylan Colonhesi',
-    tipo: 'admin'
+    tipo: 'company'
 }
 
 export const AuthContext = createContext({} as AuthContextType);
@@ -38,6 +39,10 @@ export function AuthContextProvider(props: AuthContextProviderType) {
         return usuarioAutenticado?.tipo === 'common';
     }
 
+    function isCompany(): boolean {
+        return usuarioAutenticado?.tipo === 'company';
+    }
+
     
     function isAuthenticated(): boolean {
         return !!usuarioAutenticado;
@@ -54,7 +59,7 @@ export function AuthContextProvider(props: AuthContextProviderType) {
     }, [usuario]);
 
     return (
-        <AuthContext.Provider value={{ isAdmin, isCommon, isAuthenticated, isInitialLoading }}>
+        <AuthContext.Provider value={{ isAdmin, isCommon, isCompany, isAuthenticated, isInitialLoading }}>
             {!initialLoading && props.children}
         </AuthContext.Provider>
     );
